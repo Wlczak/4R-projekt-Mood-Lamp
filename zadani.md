@@ -1,4 +1,5 @@
 # Projekt Mood Lamp
+* Zadání: v týdnu **3.10.-7.10.2022**
 * Termín produkt: příslušné cvičení v týdnu **28.11.-2.12.2022**
 * Termín prezentace: příslušné cvičení v týdnu **5.12.-9.12.2022**
 
