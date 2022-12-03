@@ -10,7 +10,7 @@ vzorové repo pro odevzdání podkladů pro projekt Mood Lamp 4.R předmět IoT
 * **dokumentace/fotky/**
   * nasdílejte alespoň 3 vhodné fotky
 * **dokumentace/video/**
-  * nasdílejte min. 1 minutové video, velikost ~ 10 MB
+  * nasdílejte min. 1 minutové video, velikost do 50 MB
 * (dokumentace/prezentace/ - volitelně, prezentace)
 * **zdrojove_kody/**
   * nasdílejte kompletní zdrojové kódy umožňující nahrání a spuštění projektu
