@@ -2,22 +2,23 @@
 
 vzorové repo pro odevzdání podkladů pro projekt Mood Lamp 4.R předmět IoT
 
+> **_začněte naklonováním tohoto repozitáře_**
+
 ## Obsah
-* **otazky_prezentace.md**
-  * otázky k prezentaci před třídou
+* **README.md**
+  * tento soubor
 * **zadani.md**
-  * přehled zadání minimálního a rozšířeného rozsahu
+  * přehled zadání a minimálního rozsahu
+* **otazky_prezentace.md**
+* **dokumentace/schéma/**
+  * elektrotechnické schéma zapojení
+* **dokumentace/design/**
+  * místo pro návrhy a vizualizace
 * **dokumentace/fotky/**
-  * nasdílejte alespoň 3 vhodné fotky
+  * místo pro fotky
 * **dokumentace/video/**
-  * nasdílejte min. 1 minutové video, velikost do 50 MB
-* (dokumentace/prezentace/ - volitelně, prezentace)
+  * místo pro video/odkay na video
 * **zdrojove_kody/**
   * nasdílejte kompletní zdrojové kódy umožňující nahrání a spuštění projektu
 * **zdrojove_kody/knihovny/**
   * nasdílejte potřebné knihovny
-
-## Postup
-* proveďte fork tohoto repozitáře
-* naplňte
-* přidejte přístup / nasdílejte / požádejte o merge
