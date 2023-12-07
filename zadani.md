@@ -96,4 +96,4 @@ gantt
 * Videa
 
 ## Inspirace
-[Instructables - návod na RGB Lampu](https://www.instructables.com/circuits/howto/rgb+lamp/)
+[Instructables - projekty RGB lamp](https://www.instructables.com/search/?q=rgb%20lamp&projects=all)
