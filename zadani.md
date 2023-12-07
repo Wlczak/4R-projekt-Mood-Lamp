@@ -35,23 +35,17 @@ gantt
 * video prezentující projekt o délce *min. 1. minuty*
 
 ## Minimální požadavky
+### Hardware
 * Vhodný vlastní design
 * Základ postavený na ESP
 * Použití RGB
   * min. 2x LED / pásek (Neopixel) / kruh
 * Měření teploty a vlhkosti
   * doporučený modul DHT11 - digitální výstup
+### Software
 * Komunikace přes MQTT
   * ovládání
   * data z čidel
-* Node-RED + UI
-  * Předpřipravené flows
-  * Ovládání RGB kanálů
-  * Přepínání efektů / přednastavených barev
-  * Výpis stavu, grafy
-    * RGB
-    * Teplota
-    * Vlhkost
 * Připravené na prezentaci
   * Přednastavené WiFi připojení v učebně
   * Vhodný ukázkový kód
@@ -63,6 +57,16 @@ gantt
   * Komentáře
   * **Preferujte použití vlastních funkcí a vynechání delay()**
   * Ošetření chyb
+### Datové toky + UI
+* Node-RED + UI
+  * Předpřipravené flows
+  * Ovládání RGB kanálů
+  * Přepínání efektů / přednastavených barev
+  * Výpis stavu, grafy
+    * RGB
+    * Teplota
+    * Vlhkost
+### Dokumentace
 * Dokumentace
   * Naplněné standardní Git repo
   * **odzdrojovat převzaté části!**
@@ -80,8 +84,7 @@ gantt
       * Z čeho je produkt sestaven
       * (efekty, hudba, humor - volitelně)
       * (případně vložit do videa i ukázku ovládání pomocí Node-RED)
-
-## Možná rozšíření
+### Možná rozšíření
 * I2C LCD
 * Napájení z baterie/powerbanky/nabíječky
 * Tlačítka
