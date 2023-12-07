@@ -21,6 +21,8 @@ gantt
     Zadání                    :a1, 2023-12-04, 5d
     section Koncept, design, rozpracovaný produkt
     Koncept, design, rozpracovaný produkt     :a2, 2024-01-08, 5d
+    section Repo, rozpracovaná dokumentace
+    Repo, rozpracovaná dokumentace        :a3, 2024-01-22, 5d
     section Vytvořený produktu
     Vytvoření produktu       :a4, 2024-02-05, 5d
     section Prezentace
