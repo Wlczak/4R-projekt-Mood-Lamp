@@ -20,11 +20,11 @@ gantt
     section Zadání
     Zadání                    :a1, 2023-12-04, 5d
     section Koncept, design, rozpracovaný produkt
-    Koncept, design, rozpracovaný produkt     :a2, 2023-01-08, 5d
+    Koncept, design, rozpracovaný produkt     :a2, 2024-01-08, 5d
     section Vytvořený produktu
-    Vytvoření produktu       :a4, 2023-02-05, 5d
+    Vytvoření produktu       :a4, 2024-02-05, 5d
     section Prezentace
-    Prezentace                :a5, 2023-02-12, 5d
+    Prezentace                :a5, 2024-02-12, 5d
 ```
 ## Výstup
 * produkt splňující minimální požadavky
