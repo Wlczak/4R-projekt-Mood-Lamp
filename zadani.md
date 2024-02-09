@@ -3,6 +3,12 @@
 
 Motivace - vytvoření IoT produktu s využitím ESP8266, který bude mít využití v běžném životě. Mood Lamp může sloužit jako atmosférická nebo noční lampička a bude umožňovat obousměrnou komunikaci přes MQTT.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Termíny
 | milník                                | termín              |
 | :------------------------------------ | :------------------ |
