@@ -14,9 +14,11 @@ Motivace - vytvoření IoT produktu s využitím ESP8266, který bude mít využ
 | :------------------------------------ | :------------------ |
 | Zadání                                | **4.12.-8.12.2023** |
 | Koncept, design, rozpracovaný produkt | **8.1.-12.1.2024**  |
-| Repo, rozpracovaná dokumentace        | **22.1.-26.1.2024**  |
-| Vytvořený produkt                     | **5.2.-9.2.2024**   |
-| Termín prezentace                     | **12.2.-16.2.2024**     |
+| Repo, rozpracovaná dokumentace        | **22.1.-26.1.2024** |
+| Vytvořený produkt[^1]                 | **12.2.-14.2.2024** |
+| Termín prezentace[^1]                 | **26.2.-28.2.2024** |
+
+[^1]: Změněno na základě požadavků
 
 ### Ganttův diagram postupu
 ```mermaid
