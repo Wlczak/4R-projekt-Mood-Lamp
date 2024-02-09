@@ -32,9 +32,9 @@ gantt
     section Repo, rozpracovaná dokumentace
     Repo, rozpracovaná dokumentace        :a3, 2024-01-22, 5d
     section Vytvořený produktu
-    Vytvoření produktu       :a4, 2024-02-05, 5d
+    Vytvoření produktu       :a4, 2024-02-12, 3d
     section Prezentace
-    Prezentace                :a5, 2024-02-12, 5d
+    Prezentace                :a5, 2024-02-26, 3d
 ```
 ## Výstup
 * produkt splňující minimální požadavky
