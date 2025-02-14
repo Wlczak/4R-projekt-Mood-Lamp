@@ -2,7 +2,7 @@
 
 vzorové repo pro odevzdání podkladů pro projekt Mood Lamp 4.R předmět IoT
 
-> **_začněte naklonováním tohoto repozitáře_**
+> **_začněte naklonováním tohoto repozitáře_** 
 
 ## Obsah
 * **README.md**

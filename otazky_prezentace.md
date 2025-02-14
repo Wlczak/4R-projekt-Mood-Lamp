@@ -1,5 +1,6 @@
 # Otázky na prezentaci
 **Zodpovězte prosím pro třídu pravdivě následující otázky**
+**VYPLNIT SEM**
 | otázka                                        | vyjádření                       |
 | :-------------------------------------------- | :------------------------------ |
 | jak dlouho mi tvorba zabrala - **čistý čas**  |                                 |
