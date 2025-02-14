@@ -1,22 +1,16 @@
 # Projekt Mood Lamp
 **Zadání: Rozmyslete, navrhněte, vytvořte zapojení i design, otestujte a vytvořte dokumentaci k Mood Lamp**
 
-Motivace - vytvoření IoT produktu s využitím ESP8266, který bude mít využití v běžném životě. Mood Lamp může sloužit jako atmosférická nebo noční lampička a bude umožňovat obousměrnou komunikaci přes MQTT.
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+Motivace - vytvoření IoT produktu s využitím ESP8266/ESP32, který bude mít využití v běžném životě. Mood Lamp může sloužit jako atmosférická nebo noční lampička a bude umožňovat obousměrnou komunikaci přes MQTT.
 
 ## Termíny
 | milník                                | termín              |
 | :------------------------------------ | :------------------ |
-| Zadání                                | **4.12.-8.12.2023** |
-| Koncept, design, rozpracovaný produkt | **8.1.-12.1.2024**  |
-| Repo, rozpracovaná dokumentace        | **22.1.-26.1.2024** |
-| Vytvořený produkt[^1]                 | **12.2.-14.2.2024** |
-| Termín prezentace[^1]                 | **26.2.-28.2.2024** |
+| Zadání                                | **19.02.-20.02.2025** |
+| Koncept, design, rozpracovaný produkt | **3.3.-6.3.2025**  |
+| Repo, rozpracovaná dokumentace        | **3.3.-6.3.2025** |
+| Vytvořený produkt                     | **10.3.-13.3.2025** |
+| Termín prezentace                     | **17.3.-20.3.2025** |
 
 [^1]: Změněno na základě požadavků
 
@@ -26,15 +20,15 @@ gantt
     title Milníky projektu
     dateFormat  YYYY-MM-DD
     section Zadání
-    Zadání                    :a1, 2023-12-04, 5d
+    Zadání                    :a1, 2025-02-19, 2d
     section Koncept, design, rozpracovaný produkt
-    Koncept, design, rozpracovaný produkt     :a2, 2024-01-08, 5d
+    Koncept, design, rozpracovaný produkt     :a2, 2025-03-03, 4d
     section Repo, rozpracovaná dokumentace
-    Repo, rozpracovaná dokumentace        :a3, 2024-01-22, 5d
+    Repo, rozpracovaná dokumentace        :a3, 2025-03-03, 4d
     section Vytvořený produktu
-    Vytvoření produktu       :a4, 2024-02-12, 3d
+    Vytvoření produktu       :a4, 2025-03-10, 4d
     section Prezentace
-    Prezentace                :a5, 2024-02-26, 3d
+    Prezentace                :a5, 2025-03-17, 4d
 ```
 ## Výstup
 * produkt splňující minimální požadavky
@@ -47,33 +41,34 @@ gantt
 * Vhodný vlastní design
 * Základ postavený na ESP
 * Použití RGB
-  * min. 2x LED / pásek (Neopixel) / kruh
+  * pásek (Neopixel) / kruh (Neopixel) / min. 2x RGB LED
 * Měření teploty a vlhkosti
-  * doporučený modul DHT11 - digitální výstup
+  * doporučený modul DHT11/22 - má digitální výstup
 ### Software
 * Komunikace přes MQTT
   * ovládání
   * data z čidel
 * Připravené na prezentaci
-  * Přednastavené WiFi připojení v učebně
-  * Vhodný ukázkový kód
-* OTA
-  * Možnost aktualizace firmwaru přes WiFi
-  * (aktualizace pomocí CI/CD)
+  * přednastavené WiFi připojení v učebně
+  * vhodný ukázkový kód
 * Zdrojový kód
-  * Přehledný kód
-  * Komentáře
+  * přehledný kód
+  * komentáře
   * **Preferujte použití vlastních funkcí a vynechání delay()**
-  * Ošetření chyb
+  * ošetření chyb
+#### Rozšíření SW
+* OTA
+  * možnost aktualizace firmwaru přes WiFi
+  * (aktualizace pomocí CI/CD)
 ### Datové toky + UI
-* Node-RED + UI
-  * Předpřipravené flows
-  * Ovládání RGB kanálů
-  * Přepínání efektů / přednastavených barev
-  * Výpis stavu, grafy
+* rozhraní pro vzdálené ovládání
+  * doporučuji kouknout na WLED nebo stavět na Node-RED + UI
+  * ovládání RGB kanálů
+  * přepínání efektů / přednastavených barev
+  * výpis stavu, grafy
     * RGB
-    * Teplota
-    * Vlhkost
+    * teplota
+    * vlhkost
 ### Dokumentace
 * Dokumentace
   * Naplněné standardní Git repo
@@ -97,7 +92,6 @@ gantt
 * Napájení z baterie/powerbanky/nabíječky
 * Tlačítka
 * RTC - > nastavení jako budík
-
 ## Postup průběžně dokumentujte pomocí
 * Nákresů
 * Fotky
