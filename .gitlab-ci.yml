@@ -9,8 +9,9 @@ stages:
 pages:
   stage: deploy
   script:
-    - echo "Deploying site to: $CI_PAGES_URL"
-    - echo "Logging deployment for reference."
+    - |
+      echo "Deploying site to: $CI_PAGES_URL"
+      echo "Logging deployment for reference."
   artifacts:
     paths:
       - public
