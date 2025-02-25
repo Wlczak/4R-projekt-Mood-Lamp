@@ -1,0 +1,3 @@
+[submodule "zdrojove_kody/libraries/WiCo"]
+	path = zdrojove_kody/libraries/WiCo
+	url = https://github.com/Wlczak/WiCo.git
