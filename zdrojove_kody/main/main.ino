@@ -1,8 +1,8 @@
 #include <WiCo.h>
-WiCo WiCo();
+WiCo wico;
 void setup() {
-  // put your setup code here, to run once:
-  //wico = new WiCo();
+  wico.addSTA("wemos", "wemosD1R2");
+  wico.connectSTA();
 }
 
 void loop() {
