@@ -31,7 +31,7 @@ void setup() {
   // ArduinoOTA.setHostname("myesp8266");
 
   // No authentication by default
-  // ArduinoOTA.setPassword((const char *)"123");
+   ArduinoOTA.setPassword((const char *)"123");
 
   ArduinoOTA.onStart([]() {
     Serial.println("Start");
