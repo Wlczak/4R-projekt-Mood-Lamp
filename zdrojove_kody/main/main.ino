@@ -20,6 +20,7 @@ Adafruit_NeoPixel neofruit(pixels, D8, NEO_GRB + NEO_KHZ800);
 void setup() {
   Serial.begin(115200);
   wico.addSTA("wemos", "wemosD1R2");
+  wico.addSTA("3301-IoT", "mikrobus");
   wico.connectSTA();
   wico.setOTAsettings("mood_lamp", "8266", 8266);
   wico.startOTA();
