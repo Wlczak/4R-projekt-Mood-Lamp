@@ -2,18 +2,25 @@
 
 #include <Adafruit_NeoPixel.h>
 #include <Arduino.h>
+#include <DHT11.h>
+
 
 WiCo wico;
+DHT11 dht11(D6);
 int frames = 0;
 long milli = millis();
 bool countFrames = false;
 
-int pixels = 8;
+int pixels = 72;
 
 int red = 0;
 int green = 0;
 int blue = 0;
 int last_brightness = 0;
+
+int temperature = 0;
+int humidity = 0;
+long dht_millis = 0;
 
 Adafruit_NeoPixel neofruit(pixels, D8, NEO_GRB + NEO_KHZ800);
 
@@ -32,7 +39,7 @@ void setup() {
   wico.subscribeMQTT("mood_lamp/brightness", brightness);
 
   neofruit.begin();
-  neofruit.setBrightness(10);
+  neofruit.setBrightness(0);
   for (int i = 0; i < pixels; i++) {
     neofruit.setPixelColor(i, neofruit.Color(0, 0, 0));
     neofruit.show();
@@ -132,5 +139,26 @@ void loop() {
   wico.runMQTT();
   if (countFrames) {
     calcFramerate();
+  }
+
+  if (millis() - dht_millis > 1000) {
+    dht_millis = millis();
+    int new_temperature;
+    int new_humidity;
+    int result = dht11.readTemperatureHumidity(new_temperature, new_humidity);
+    if (result == 0) {
+      if (new_temperature != temperature) {
+        wico.publishMQTT("mood_lamp/temperature", std::to_string(new_temperature).c_str(), true);
+        temperature = new_temperature;
+      }
+
+      if (new_humidity != humidity) {
+        wico.publishMQTT("mood_lamp/humidity", std::to_string(new_humidity).c_str(), true);
+        humidity = new_humidity;
+      }
+    } else {
+      // Print error message based on the error code.
+      Serial.println(DHT11::getErrorString(result));
+    }
   }
 }
