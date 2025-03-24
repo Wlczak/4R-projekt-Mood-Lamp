@@ -31,10 +31,14 @@ void setup() {
   wico.connectSTA();
   wico.setOTAsettings("mood_lamp", "8266", 8266);
   wico.startOTA();
-  //wico.setMQTTAuth("wemos", "wemosR1D2");
+  
   wico.setMQTTId("mood_lamp");
-  //wico.connectMQTT("192.168.0.106", 1883);
-  wico.connectMQTT("10.202.31.167", 1883);
+  // home MQTT
+  wico.setMQTTAuth("wemos", "wemosR1D2");
+  wico.connectMQTT("192.168.0.106", 1883);
+
+  // school MQTT
+  //wico.connectMQTT("10.202.31.167", 1883);
   wico.publishMQTT("mood_lamp", "hello there :)");
   wico.subscribeMQTT("mood_lamp/rgb", rgb);
   wico.subscribeMQTT("mood_lamp/brightness", brightness);
