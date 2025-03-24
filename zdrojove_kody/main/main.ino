@@ -26,23 +26,33 @@ Adafruit_NeoPixel neofruit(pixels, D8, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("");
+  Serial.println("Starting...");
   wico.addSTA("wemos", "wemosD1R2");
   wico.addSTA("3301-IoT", "mikrobus");
   wico.connectSTA();
+  Serial.println("Sta connected");
+  Serial.print("Connected to: ");
+  Serial.println(WiFi.SSID());
   wico.setOTAsettings("mood_lamp", "8266", 8266);
   wico.startOTA();
-  
-  wico.setMQTTId("mood_lamp");
-  // home MQTT
-  wico.setMQTTAuth("wemos", "wemosR1D2");
-  wico.connectMQTT("192.168.0.106", 1883);
 
-  // school MQTT
-  //wico.connectMQTT("10.202.31.167", 1883);
+  Serial.println("OTA started");
+
+  wico.setMQTTId("mood_lamp");
+  if (WiFi.SSID() == "wemos") {
+    // home MQTT
+    wico.setMQTTAuth("wemos", "wemosR1D2");
+    wico.connectMQTT("192.168.0.106", 1883);
+  } else {
+    // school MQTT
+    wico.connectMQTT("10.202.31.167", 1883);
+  }
+
+  Serial.println("MQTT connected");
   wico.publishMQTT("mood_lamp", "hello there :)");
   wico.subscribeMQTT("mood_lamp/rgb", rgb);
   wico.subscribeMQTT("mood_lamp/brightness", brightness);
-
   neofruit.begin();
   neofruit.setBrightness(0);
   for (int i = 0; i < pixels; i++) {
@@ -151,6 +161,14 @@ void loop() {
     int new_temperature;
     int new_humidity;
     int result = dht11.readTemperatureHumidity(new_temperature, new_humidity);
+    // calibration
+    new_temperature += -3;
+    if (new_humidity < 100 - 9) {
+      new_humidity += 9;
+    } else {
+      new_humidity = 100;
+    }
+
     if (result == 0) {
       if (new_temperature != temperature) {
         wico.publishMQTT("mood_lamp/temperature", std::to_string(new_temperature).c_str(), true);
