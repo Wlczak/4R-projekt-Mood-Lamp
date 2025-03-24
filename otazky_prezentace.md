@@ -3,7 +3,7 @@
 **VYPLNIT SEM**
 | otázka                                        | vyjádření                                                                                                |
 | :-------------------------------------------- | :------------------------------                                                                          |
-| jak dlouho mi tvorba zabrala - **čistý čas**  | 6 h onshape + 3 h tisk + 4 h programování + 30 min sestavení = 13.5 h                                                               |
+| jak dlouho mi tvorba zabrala - **čistý čas**  | 6 h onshape + 3 h tisk + 4 h programování + 30 min sestavení = 13.5 h                                    |
 | odkud jsem čerpal inspiraci                   | [Instructables](https://www.instructables.com/RGB-Lamp-WiFi/)                                            |
 | odkaz na video                                | *URL video*                                                                                              |
 | jak se mi to podařilo rozplánovat             | celkem dobře                                                                                             |
@@ -14,4 +14,4 @@
 | UI                                            | *URL obrázku UI*                                                                                         |
 | co se mi povedlo                              | návrh 3d modelu                                                                                          |
 | co se mi nepovedlo/příště bych udělal/a jinak | nestabilní kód                                                                                           |
-| zhodnocení celé tvorby (návrh známky)         |                                                                                                          |
+| zhodnocení celé tvorby (návrh známky)         | 1                                                                                                        |
