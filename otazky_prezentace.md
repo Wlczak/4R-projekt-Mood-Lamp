@@ -5,7 +5,7 @@
 | :-------------------------------------------- | :------------------------------                                                                          |
 | jak dlouho mi tvorba zabrala - **čistý čas**  | 6 h onshape + 3 h tisk + 4 h programování + 30 min sestavení = 13.5 h                                    |
 | odkud jsem čerpal inspiraci                   | [Instructables](https://www.instructables.com/RGB-Lamp-WiFi/)                                            |
-| odkaz na video                                | *URL video*                                                                                              |
+| odkaz na video                                | [youtube](https://youtu.be/S-mcsvrv2pI) video*                                                                                              |
 | jak se mi to podařilo rozplánovat             | celkem dobře                                                                                             |
 | proč jsem zvolil tento design                 | instpirace z instructables + využití 3d tiskárny                                                         |
 | zapojení                                      | [gitlab](https://gitlab.spseplzen.cz/vlceka/4r-projekt-mood-lamp/-/tree/main/dokumentace/fotky/zapojeni) |
