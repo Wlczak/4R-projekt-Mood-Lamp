@@ -4,16 +4,23 @@
 #include <Arduino.h>
 #include <DHT11.h>
 
-int pixels = 72;
+#define PIXELS 72
 
 WiCo wico;
-Adafruit_NeoPixel neofruit(pixels, D8, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel neofruit(PIXELS, D8, NEO_GRB + NEO_KHZ800);
 
-bool hadConnectionInteruption = false;
+int red = 0;
+int green = 0;
+int blue = 0;
+int last_brightness = 0;
+
+int temperature = 0;
+int humidity = 0;
+long dht_millis = 0;
 
 void setColor(int r, int g, int b) {
   delay(600);
-  for (int i = 0; i < pixels; i++) {
+  for (int i = 0; i < PIXELS; i++) {
     neofruit.setPixelColor(i, neofruit.Color(r, g, b));
   }
   neofruit.show();
@@ -28,8 +35,7 @@ void handleRGB(const char *topic, const char *msg) {
 
 void setupMQTT() {
   setColor(255, 255, 0);
-  wico.setMQTTId("mood_lamp");
-  wico.setMQTTAuth("wemos", "wemosR1D2");
+  
   if (!wico.connectMQTT("192.168.0.106", 1883)) {
     setColor(255, 120, 0);
     delay(5000);
@@ -38,6 +44,8 @@ void setupMQTT() {
 }
 
 void setup() {
+  wico.setMQTTId("mood_lamp");
+  wico.setMQTTAuth("wemos", "wemosR1D2");
   Serial.begin(115200);
   neofruit.begin();
   neofruit.setBrightness(20);
@@ -47,7 +55,6 @@ void setup() {
 
   setColor(0, 0, 250);
   wico.addSTA("wemos", "wemosD1R2");
-  wico.addSTA("3301-IoT", "mikrobus");
   setColor(255, 0, 250);
   if (!wico.connectSTA()) {
     setColor(255, 0, 0);
@@ -57,27 +64,86 @@ void setup() {
   setColor(0, 0, 250);
   Serial.print("Connected to: ");
   Serial.println(WiFi.SSID());
-  setColor(0, 0, 0);
   setupMQTT();
-  wico.subscribeMQTT("mood_lamp/rgb", handleRGB);
+  setColor(0, 0, 0);
+  wico.subscribeMQTT("mood_lamp/rgb", rgb);
+  wico.subscribeMQTT("mood_lamp/brightness", brightness);
+  neofruit.setBrightness(0);
+}
+
+void rgb(const char *topic, const char *msg) {
+  std::string hexString = msg;
+  if (hexString.length() != 6) {
+    return;
+  }
+
+  // Convert each pair of characters (hex) to integers
+  int newRed = std::stoi(hexString.substr(0, 2), nullptr, 16);
+  int newGreen = std::stoi(hexString.substr(2, 2), nullptr, 16);
+  int newBlue = std::stoi(hexString.substr(4, 2), nullptr, 16);
+
+  int time = 100;
+
+  float stepRed = static_cast<float>(newRed - red) / time;
+  float stepGreen = static_cast<float>(newGreen - green) / time;
+  float stepBlue = static_cast<float>(newBlue - blue) / time;
+
+  int startingRed = red;
+  int startingGreen = green;
+  int startingBlue = blue;
+
+  Serial.print("stepRed:");
+  Serial.println(stepRed);
+
+  for (int j = 0; j < time; j++) {
+    int setRed = static_cast<int>(std::floor(stepRed * j + red));
+    int setGreen = static_cast<int>(std::floor(stepGreen * j + green));
+    int setBlue = static_cast<int>(std::floor(stepBlue * j + blue));
+
+    for (int i = 0; i < PIXELS; i++) {
+      neofruit.setPixelColor(i, neofruit.Color(setRed, setGreen, setBlue));
+      // Serial.print("time: ");
+      // Serial.println();
+    }
+    Serial.print("red:");
+    Serial.println(static_cast<int>(std::floor(stepRed * j + red)));
+    neofruit.show();
+    delay(10);
+  }
+  red = newRed;
+  green = newGreen;
+  blue = newBlue;
+}
+
+void brightness(const char *topic, const char *msg) {
+  Serial.println(std::stoi(msg));
+
+  int time = 100;
+
+  int newBrightness = std::stoi(msg);
+
+  float stepBrightness = static_cast<float>(newBrightness - last_brightness) / time;
+
+  int startingBrightness = last_brightness;
+
+  for (int j = 0; j < time; j++) {
+    int setBrightness = static_cast<int>(std::floor(stepBrightness * j + last_brightness));
+
+    for (int i = 0; i < PIXELS; i++) {
+      neofruit.setBrightness(setBrightness);
+      neofruit.setPixelColor(i, neofruit.Color(red, green, blue));
+    }
+    neofruit.show();
+    delay(10);
+    Serial.print("brightness:");
+    Serial.println(setBrightness);
+  }
+  last_brightness = newBrightness;
+
+  neofruit.setBrightness(std::stoi(msg));
+  neofruit.show();
 }
 
 void loop() {
-  if (!wico.isConnected()) {
-    hadConnectionInteruption = true;
-    setColor(255, 0, 0);
-  } else {
-    setColor(0, 255, 0);
-  }
-  if (wico.isConnectedMQTT()) {
-    Serial.println("MQTT connected");
-  }
-  if (hadConnectionInteruption) {
-    setupMQTT();
-    hadConnectionInteruption = false;
-  }
-  if (!wico.isConnectedMQTT()) {
-    setupMQTT();
-  }
   wico.runMQTT();
 }
