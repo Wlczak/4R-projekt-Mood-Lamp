@@ -155,18 +155,64 @@ void hyperspace(int speed) {
   yield();
 }
 
-void electricArcs(int speed, int density) {
+void meteorRain(int meteorSize, int speed, int decay, bool forward) {
+  for (int i = 0; i < PIXELS; i++) fadePixel(i, decay);
+  int pos = forward ? random(0, PIXELS) : random(0, PIXELS);
+  for (int j = 0; j < meteorSize; j++) {
+    int idx = forward ? pos + j : pos - j;
+    if (idx >= 0 && idx < PIXELS) {
+      neofruit.setPixelColor(idx, neofruit.Color(255, 180, 100));
+    }
+  }
+  neofruit.show();
+  delay(speed);
+  yield();
+}
+
+void pulseGlow(int r, int g, int b, int speed) {
+  static int t = 0;
+  int v = (sin(t * 0.05) + 1.0) * 127;
+  for (int i = 0; i < PIXELS; i++) {
+    int rr = (r * v) >> 8;
+    int gg = (g * v) >> 8;
+    int bb = (b * v) >> 8;
+    neofruit.setPixelColor(i, neofruit.Color(rr, gg, bb));
+  }
+  neofruit.show();
+  t += speed;
+  yield();
+}
+
+void larsonScanner(int eyeSize, int speed, uint32_t color) {
+  static int pos = 0;
+  static int dir = 1;
+  for (int i = 0; i < PIXELS; i++) {
+    int d = abs(i - pos);
+    if (d < eyeSize) {
+      int intensity = 255 - (d * (255 / max(1, eyeSize)));
+      uint32_t c = color;
+      uint8_t r = ((c >> 16) & 0xFF) * intensity / 255;
+      uint8_t g = ((c >> 8) & 0xFF) * intensity / 255;
+      uint8_t b = (c & 0xFF) * intensity / 255;
+      neofruit.setPixelColor(i, neofruit.Color(r, g, b));
+    } else {
+      neofruit.setPixelColor(i, 0);
+    }
+  }
+  neofruit.show();
+  pos += dir;
+  if (pos <= 0 || pos >= PIXELS - 1) dir = -dir;
+  delay(speed);
+  yield();
+}
+
+void plasmaPulse(int speed) {
   static uint16_t t = 0;
   for (int i = 0; i < PIXELS; i++) {
-    int brightness = 0;
-    if ((random(0, 100) < density)) {
-      brightness = random(150, 255);
-    }
-    int pulse = (sin((i * 4 + t) * 0.1) + 1) * 127;
-    brightness = max(brightness, pulse);
-    int r = brightness / 4;
-    int g = brightness / 2;
-    int b = brightness;
+    uint8_t v = ((i * 7) + (t >> 1)) & 255;
+    uint8_t r = (v < 128) ? v * 2 : 255;
+    uint8_t g = (v < 128) ? 255 : (255 - (v - 128) * 2);
+    uint8_t b = (v < 128) ? 255 - v * 2 : (v - 128) * 2;
     neofruit.setPixelColor(i, neofruit.Color(r, g, b));
   }
   neofruit.show();
@@ -196,11 +242,6 @@ void loop() {
   time = millis();
   while (millis() - time < 10000) {
     hyperspace(2);
-    yield();
-  }
-  time = millis();
-  while (millis() - time < 10000) {
-    electricArcs(3, 20);
     yield();
   }
   time = millis();
@@ -236,4 +277,49 @@ void loop() {
     }
     yield();
   }
+  time = millis();
+  while (millis() - time < 10000) {
+    for (int i = 0; i < 120; i++) {
+      meteorRain(6, 20, 24, true);
+    }
+    yield();
+  }
+  time = millis();
+  while (millis() - time < 10000) {
+    for (int i = 0; i < 200; i++) {
+      pulseGlow(40, 0, 200, 3);
+    }
+    yield();
+  }
+  time = millis();
+  while (millis() - time < 10000) {
+    for (int i = 0; i < 150; i++) {
+      larsonScanner(3, 12, neofruit.Color(255, 40, 20));
+    }
+    yield();
+  }
+  time = millis();
+  while (millis() - time < 10000) {
+    for (int i = 0; i < 120; i++) {
+      plasmaPulse(4);
+    }
+    yield();
+  }
+  time = millis();
+  while (millis() - time < 10000) {
+    for (int i = 0; i < 120; i++) {
+      rainbowCycle(1);
+      yield();
+    }
+  }
+}
+
+void rainbowCycle(int speed) {
+  static uint16_t j = 0;
+  for (int i = 0; i < PIXELS; i++) {
+    neofruit.setPixelColor(i, wheel(((i * 256 / PIXELS) + j) & 255));
+  }
+  neofruit.show();
+  j += speed;
+  yield();
 }
